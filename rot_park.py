@@ -6,6 +6,7 @@
 # By Micah Cliffe (KK6SLK) <micah.cliffe@ucla.edu>
 
 import socket
+import sys
 from rot_split import client_socket, HOST, azPORT, elPORT
 
 AZ_POS      = "135"
@@ -17,12 +18,12 @@ def main():
         az       = client_socket()
         el       = client_socket()
     except Exception as e:
-        print "Could not make sockets. Exiting."
-        print e
+        print("Could not make sockets. Exiting.")
+        print(e)
         sys.exit(1)
     az.connect(HOST, azPORT)
     el.connect(HOST, elPORT)
-    print "Connected to rotctld instances."
+    print("Connected to rotctld instances.")
     # Give commands now
     print("Current Position: " + str(get_position(az, el)))
     print("Setting Position: " + AZ_POS + " " + EL_POS)
@@ -55,4 +56,4 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print "\nExiting.\n"
+        print("\nExiting.\n")
