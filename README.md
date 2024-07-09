@@ -1,3 +1,6 @@
+# IMPORTANT
+This fork is not functioning currently. The plan is to fix and update it within the next week (July 2024)
+
 # Tracking
 Python and Bash scripts that allow Gpredict (on Linux) to control the Green 
 Heron RT-21 Az-El rotor controller for satellite tracking.
