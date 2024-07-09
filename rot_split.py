@@ -43,10 +43,10 @@ class client_socket:
             raise RuntimeError("Maximum number of unsuccessful attempts reached")
 
     def send(self, msg):
-        self.sock.send(msg)
+        self.sock.send(msg.encode('utf-8'))
 
     def get_response(self):
-        return self.sock.recv(REC_SZ)
+        return self.sock.recv(REC_SZ).decode('utf-8')
     
     def __del__(self):
         self.sock.close()
@@ -83,10 +83,10 @@ class server_socket:
             print(e)
     
     def receive(self):
-        return str(self.connected.recv(REC_SZ))
+        return self.connected.recv(REC_SZ).decode('utf-8')
 
     def respond(self, response):
-        self.connected.send(response)
+        self.connected.send(response.encode('utf-8'))
 
     def __del__(self):
         if self.connected:
@@ -125,6 +125,8 @@ def main():
         else:
             print("Command: " + heard)
         
+        print(heard[0])
+
         if heard[0] == 'p':
             get_position(gpredict, az, el, heard)
         elif heard[0] == 'P':
